@@ -30,15 +30,21 @@ export class NewCourseComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  onGetList(){
     this.courseService.List().subscribe((data: Courses[]) => {
       this.dataSource = data;
      })
   }
 
+  ngOnInit() {
+    this.onGetList();
+  }
+
   onSubmit(){
-    this.courseService.Save(this.course).subscribe(r => {this.course = r});
-    location.reload();
+    this.courseService.Save(this.course).subscribe(r => {
+      this.course = new Courses();
+      this.onGetList();
+    });
   }
 
    myTabSelectedIndexChange(index: number) {
@@ -46,7 +52,7 @@ export class NewCourseComponent implements OnInit {
   }
 
   onDelete(data : Courses){
-    this.courseService.Delete(data.id).subscribe(r => {location.reload()});
+    this.courseService.Delete(data.id).subscribe(r => {this.onGetList()});
   }
 
   onSelItem(data : Courses){

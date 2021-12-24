@@ -31,6 +31,10 @@ export class NewStudentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.onGetList();
+  }
+
+  onGetList(){
     this.studentServices.List().subscribe((data : Student[]) => {
       this.dataSource = data;
     });
@@ -42,8 +46,8 @@ export class NewStudentComponent implements OnInit {
 
   onSubmit(){
     this.studentServices.Save(this.student).subscribe(r => {
-      this.student = r;
-      location.reload();
+      this.student = new Student();
+      this.onGetList();
     });
   }
 
@@ -53,7 +57,7 @@ export class NewStudentComponent implements OnInit {
   }
 
   onDelete(data : Student){
-    this.studentServices.Delete(data.id).subscribe(r => {location.reload()})
+    this.studentServices.Delete(data.id).subscribe(r => {this.onGetList()})
   }
 
 }

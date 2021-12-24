@@ -23,6 +23,10 @@ export class NewTeacherComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.onGetList();
+  }
+
+  onGetList(){
     this.teacherService.List().subscribe((data : Teacher[]) => {
       this.dataSource = data;
     });
@@ -34,8 +38,8 @@ export class NewTeacherComponent implements OnInit {
 
   onSubmit(){
     this.teacherService.Save(this.teacher).subscribe(r => {
-      this.teacher = r;
-      location.reload();
+      this.teacher = new Teacher();
+      this.onGetList();
     });
   }
 
@@ -45,7 +49,7 @@ export class NewTeacherComponent implements OnInit {
   }
 
   onDelete(data : Teacher){
-    this.teacherService.Delete(data.id).subscribe(r => {location.reload()})
+    this.teacherService.Delete(data.id).subscribe(r => {this.onGetList()})
   }
 
 }

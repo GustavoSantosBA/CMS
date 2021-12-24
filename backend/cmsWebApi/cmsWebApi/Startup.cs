@@ -40,7 +40,7 @@ namespace cmsWebApi
             });
 
             services.AddDbContext<cmsContext>(
-                context => context.UseSqlServer("Data Source=.;Initial Catalog=cmsDb;Integrated Security=True")
+                context => context.UseSqlServer("Data Source=megacontrolapp.com,11433;Initial Catalog=dblocal;User ID=cms;Password=a52l3^qX")
             );
 
             // Dependências

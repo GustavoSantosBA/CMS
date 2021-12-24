@@ -13,15 +13,15 @@ export class CourseService {
 
 constructor(private http: HttpClient) { }
 
-Save(obj : any): Observable<Courses> {
-  return this.http.post(`${environment.url.api}Courses`,obj)
-}
+  Save(obj : any): Observable<Courses> {
+    return this.http.post(`${environment.url.api}Courses`,obj)
+  }
 
-List(): Observable<Courses[]>{
-  return this.http.get<Courses[]>(`${environment.url.api}Courses`)
-}
+  List(): Observable<Courses[]>{
+    return this.http.get<Courses[]>(`${environment.url.api}Courses`)
+  }
 
-Delete(id? : number){
-  return this.http.delete(`${environment.url.api}Courses/` + id);
-}
+  Delete(id? : number){
+    return this.http.delete(`${environment.url.api}Courses/` + id);
+  }
 }

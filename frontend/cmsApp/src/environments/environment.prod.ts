@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  url: {
+    api : 'http://apicms.megacontrolapp.com/api/'
+  }
 };

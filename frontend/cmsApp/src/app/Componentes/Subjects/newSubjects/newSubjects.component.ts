@@ -34,15 +34,17 @@ export class NewSubjectsComponent implements OnInit {
 
   ngOnInit() {
 
-    // Get the list of subjects
-      this.subjectsService.List().subscribe((data : Subjects[]) => {
-      this.dataSource = data;
-    });
-    // Get the list of courses
+    this.onGetList();
+
     this.courseService.List().subscribe(r => this.courses = r);
 
-    // Get the list of teather
     this.teacherService.List().subscribe(r => this.teachers = r);
+  }
+
+  onGetList(){
+    this.subjectsService.List().subscribe((data : Subjects[]) => {
+      this.dataSource = data;
+    });
   }
 
   myTabSelectedIndexChange(index: number) {
@@ -52,7 +54,7 @@ export class NewSubjectsComponent implements OnInit {
   onSubmit(){
     this.subjectsService.Save(this.subjects).subscribe(r => {
       this.subjects = r;
-      location.reload();
+      this.onGetList();
     });
   }
 
@@ -62,7 +64,7 @@ export class NewSubjectsComponent implements OnInit {
   }
 
   onDelete(data : Subjects){
-    this.subjectsService.Delete(data.id).subscribe(r => {location.reload()})
+    this.subjectsService.Delete(data.id).subscribe(r => {this.onGetList();})
   }
 
 }
