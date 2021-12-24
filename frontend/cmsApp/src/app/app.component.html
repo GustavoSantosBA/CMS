@@ -1,0 +1,25 @@
+<app-header>
+  <div class="page-title-box" >
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h4 class="page-title mb-1">{{pageTitle}}</h4>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                      <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</app-header>
+<app-footer></app-footer>
